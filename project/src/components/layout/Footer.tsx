@@ -103,13 +103,13 @@ const Footer = () => {
         {/* Copyright */}
         <div className="border-t border-gray-200 dark:border-gray-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            © {currentYear} Suparna Khanna. All rights reserved.
+            &copy; {currentYear} Suparna Khanna. All rights reserved.
           </p>
           <div className="mt-4 md:mt-0 text-sm text-gray-600 dark:text-gray-400 flex space-x-4">
-            <Link to="/privacy" className="hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+            <Link to="/privacy-policy" className="hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
               Privacy Policy
             </Link>
-            <Link to="/terms" className="hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+            <Link to="/terms-of-service" className="hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
               Terms of Service
             </Link>
           </div>

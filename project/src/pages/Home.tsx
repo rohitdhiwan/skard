@@ -36,7 +36,7 @@ const Home = () => {
                 Creating Authentic <span className="text-primary-500 dark:text-primary-400">Digital Stories</span>
               </h1>
               <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 max-w-lg mx-auto md:mx-0">
-                Hi, I'm [Your Name]. I create engaging content that connects brands with their audiences through authentic storytelling and creative visuals.
+                Hi, I'm Suparna Khanna. I create engaging content that connects brands with their audiences through authentic storytelling and creative visuals.
               </p>
               
               <div className="flex flex-wrap gap-4 justify-center md:justify-start">
@@ -92,7 +92,7 @@ const Home = () => {
                     <Camera className="h-6 w-6 text-accent-500" />
                   </div>
                   <div>
-                    <h4 className="font-semibold">1M+ Reach</h4>
+                    <h4 className="font-semibold">5M+ Reach</h4>
                     <p className="text-sm text-gray-600 dark:text-gray-400">Across platforms</p>
                   </div>
                 </div>
@@ -131,114 +131,83 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Featured Item 1 */}
+            {/* YouTube Video */}
             <motion.div 
               className="card group"
               whileHover={{ y: -5 }}
               transition={{ type: 'spring', stiffness: 400, damping: 10 }}
             >
               <div className="relative overflow-hidden">
-                <img 
-                  src="https://images.pexels.com/photos/4339954/pexels-photo-4339954.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
-                  alt="Travel Vlog" 
-                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-                  <div className="p-6">
-                    <span className="inline-block px-3 py-1 bg-primary-500 text-white text-xs font-semibold rounded-full mb-2">
-                      YouTube
-                    </span>
-                    <h3 className="text-xl font-semibold text-white">Summer Travel Series</h3>
-                  </div>
-                </div>
+                <iframe
+                  width="100%"
+                  height="360"
+                  src="https://www.youtube.com/embed/Ol9dDKqqKq4"
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="rounded-lg"
+                ></iframe>
               </div>
               <div className="p-6">
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  My most popular travel series exploring hidden gems in Europe garnered over 500K views.
+                <span className="inline-block px-3 py-1 bg-primary-500 text-white text-xs font-semibold rounded-full mb-2">
+                  YouTube
+                </span>
+                <h3 className="text-xl font-semibold mb-2">Latest YouTube Video</h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Watch my latest YouTube video featuring...
                 </p>
-                <a 
-                  href="https://youtube.com/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-primary-500 dark:text-primary-400 font-medium hover:text-primary-600 dark:hover:text-primary-300"
-                >
-                  Watch Series
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
               </div>
             </motion.div>
-            
-            {/* Featured Item 2 */}
+
+            {/* Instagram Reel 1 */}
             <motion.div 
               className="card group"
               whileHover={{ y: -5 }}
               transition={{ type: 'spring', stiffness: 400, damping: 10 }}
             >
               <div className="relative overflow-hidden">
-                <img 
-                  src="https://images.pexels.com/photos/3062541/pexels-photo-3062541.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
-                  alt="Beauty Tutorial" 
-                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-                  <div className="p-6">
-                    <span className="inline-block px-3 py-1 bg-accent-500 text-white text-xs font-semibold rounded-full mb-2">
-                      Instagram
-                    </span>
-                    <h3 className="text-xl font-semibold text-white">Beauty Tutorials</h3>
-                  </div>
-                </div>
+                <iframe
+                  width="100%"
+                  height="360"
+                  src="https://www.instagram.com/p/Cx6hAmEhmrW/embed"
+                  allowFullScreen
+                  className="rounded-lg"
+                ></iframe>
               </div>
               <div className="p-6">
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  Easy-to-follow beauty routines and product reviews that have helped thousands of followers.
+                <span className="inline-block px-3 py-1 bg-accent-500 text-white text-xs font-semibold rounded-full mb-2">
+                  Instagram
+                </span>
+                <h3 className="text-xl font-semibold mb-2">Recent Instagram Reel</h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Check out my latest Instagram reel featuring...
                 </p>
-                <a 
-                  href="https://instagram.com/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-primary-500 dark:text-primary-400 font-medium hover:text-primary-600 dark:hover:text-primary-300"
-                >
-                  See Collection
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
               </div>
             </motion.div>
-            
-            {/* Featured Item 3 */}
+
+            {/* Instagram Reel 2 */}
             <motion.div 
               className="card group"
               whileHover={{ y: -5 }}
               transition={{ type: 'spring', stiffness: 400, damping: 10 }}
             >
               <div className="relative overflow-hidden">
-                <img 
-                  src="https://images.pexels.com/photos/3062542/pexels-photo-3062542.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
-                  alt="Lifestyle Content" 
-                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-                  <div className="p-6">
-                    <span className="inline-block px-3 py-1 bg-primary-500 text-white text-xs font-semibold rounded-full mb-2">
-                      YouTube
-                    </span>
-                    <h3 className="text-xl font-semibold text-white">Day in My Life</h3>
-                  </div>
-                </div>
+                <iframe
+                  width="100%"
+                  height="360"
+                  src="https://www.instagram.com/p/CxX0qxIJF-v/embed"
+                  allowFullScreen
+                  className="rounded-lg"
+                ></iframe>
               </div>
               <div className="p-6">
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  Follow along as I share my daily routines, productivity tips, and lifestyle hacks.
+                <span className="inline-block px-3 py-1 bg-accent-500 text-white text-xs font-semibold rounded-full mb-2">
+                  Instagram
+                </span>
+                <h3 className="text-xl font-semibold mb-2">Latest Instagram Reel</h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Watch my most recent Instagram reel featuring...
                 </p>
-                <a 
-                  href="https://youtube.com/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-primary-500 dark:text-primary-400 font-medium hover:text-primary-600 dark:hover:text-primary-300"
-                >
-                  Watch Videos
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
               </div>
             </motion.div>
           </div>

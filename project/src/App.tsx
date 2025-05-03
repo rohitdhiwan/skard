@@ -14,6 +14,8 @@ import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
 import Booking from './pages/Booking';
 import NotFound from './pages/NotFound';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 
 // Context
 import { ThemeProvider } from './context/ThemeContext';
@@ -48,6 +50,8 @@ function App() {
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/booking" element={<Booking />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/terms-of-service" element={<TermsOfService />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AnimatePresence>

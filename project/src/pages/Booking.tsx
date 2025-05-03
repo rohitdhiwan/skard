@@ -5,6 +5,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { format, addDays, isWeekend, setHours, setMinutes } from 'date-fns';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, CheckCircle, Camera, Video, Users, MessageSquare } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import { bookingEmailTemplate } from '../utils/emailTemplates';
 
 interface BookingFormData {
   name: string;
@@ -33,8 +35,16 @@ const filterPassedTime = (time: Date) => {
 // Generate available time slots (9 AM to 5 PM, hourly slots)
 const getTimeSlots = () => {
   const slots = [];
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  
+  // Generate slots from 9 AM to 5 PM
   for (let i = 9; i <= 17; i++) {
-    slots.push(setHours(setMinutes(new Date(), 0), i));
+    const time = setHours(setMinutes(new Date(today), 0), i);
+    // Only include times that haven't passed today
+    if (time >= now) {
+      slots.push(time);
+    }
   }
   return slots;
 };
@@ -47,29 +57,42 @@ const Booking = () => {
   const selectedService = watch('service');
   const selectedDate = watch('date');
   
-  // Filter weekends
+  // Filter weekends and ensure date is not in the past
   const isWeekday = (date: Date) => {
-    return !isWeekend(date);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return !isWeekend(date) && date >= today;
   };
   
   // Get tomorrow as minimum date
   const tomorrow = addDays(new Date(), 1);
   
-  const onSubmit = (data: BookingFormData) => {
-    // In a real application, you would send this data to your backend
-    console.log('Booking submitted:', data);
-    
+  const onSubmit = async (data: BookingFormData) => {
     // Format the data for display
     const formattedData = {
       ...data,
       date: data.date ? format(data.date, 'MMMM dd, yyyy') : null,
       time: data.time ? format(data.time, 'h:mm a') : null,
     };
-    
-    console.log('Formatted data:', formattedData);
-    
-    // Simulate form submission
-    setTimeout(() => {
+
+    try {
+      // Send email using EmailJS
+      await emailjs.send(
+        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        {
+          to_email: 'suparnakhanna05@gmail.com',
+          from_name: data.name,
+          from_email: data.email,
+          service: data.service,
+          date: formattedData.date,
+          time: formattedData.time,
+          phone: data.phone,
+          message: data.message
+        },
+        'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
+      );
+
       setIsSubmitted(true);
       reset();
       
@@ -78,7 +101,11 @@ const Booking = () => {
         setIsSubmitted(false);
         setSelectedStep(1);
       }, 5000);
-    }, 1000);
+
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert('There was an error submitting your booking. Please try again.');
+    }
   };
 
   const nextStep = () => {
@@ -305,12 +332,22 @@ const Booking = () => {
                             render={({ field }) => (
                               <DatePicker
                                 selected={field.value}
-                                onChange={(date) => field.onChange(date)}
+                                onChange={(date) => {
+                                  const newDate = date;
+                                  if (newDate) {
+                                    // Set time to 9 AM by default
+                                    newDate.setHours(9, 0, 0, 0);
+                                  }
+                                  field.onChange(newDate);
+                                }}
                                 minDate={tomorrow}
                                 filterDate={isWeekday}
                                 placeholderText="Select a weekday"
                                 className="input pl-10"
                                 calendarClassName="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-lg"
+                                selectsStart
+                                startDate={field.value}
+                                endDate={watch('time')}
                               />
                             )}
                           />
@@ -336,7 +373,19 @@ const Booking = () => {
                             render={({ field }) => (
                               <DatePicker
                                 selected={field.value}
-                                onChange={(time) => field.onChange(time)}
+                                onChange={(time) => {
+                                  const newTime = time;
+                                  if (newTime) {
+                                    // Ensure time is within working hours
+                                    const hours = newTime.getHours();
+                                    if (hours < 9) {
+                                      newTime.setHours(9, 0, 0, 0);
+                                    } else if (hours > 17) {
+                                      newTime.setHours(17, 0, 0, 0);
+                                    }
+                                  }
+                                  field.onChange(newTime);
+                                }}
                                 showTimeSelect
                                 showTimeSelectOnly
                                 timeIntervals={60}
@@ -344,8 +393,11 @@ const Booking = () => {
                                 dateFormat="h:mm aa"
                                 placeholderText="Select a time"
                                 className="input pl-10"
-                                filterTime={filterPassedTime}
-                                includeTimes={getTimeSlots()}
+                                selectsEnd
+                                startDate={watch('date')}
+                                endDate={field.value}
+                                minTime={setHours(setMinutes(new Date(), 0), 9)}
+                                maxTime={setHours(setMinutes(new Date(), 0), 17)}
                               />
                             )}
                           />
